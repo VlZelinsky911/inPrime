@@ -14,7 +14,7 @@ export const HeroSection = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-black"
+      className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-black pt-24"
     >
       {/* Background Effects */}
       <div className="absolute inset-0">

@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
-import { NAV_LINKS } from '../../constants';
-import { Button } from '../ui';
-import faviconSvg from '../../assets/favicon.svg';
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
+import { NAV_LINKS } from "../../constants";
+import { Button } from "../ui";
+import faviconSvg from "../../assets/favicon.svg";
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,14 +14,14 @@ export const Navbar = () => {
       setIsScrolled(window.scrollY > 50);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
     setIsMobileMenuOpen(false);
   };
@@ -31,9 +31,10 @@ export const Navbar = () => {
       className={`
         fixed top-0 left-0 right-0 z-50
         transition-all duration-300
-        ${isScrolled 
-          ? 'bg-inprime-black/90 backdrop-blur-lg shadow-lg' 
-          : 'bg-transparent'
+        ${
+          isScrolled
+            ? "bg-inprime-black/90 backdrop-blur-lg shadow-lg"
+            : "bg-transparent"
         }
       `}
       initial={{ y: -100 }}
@@ -49,15 +50,13 @@ export const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             onClick={(e) => {
               e.preventDefault();
-              scrollToSection('#hero');
+              scrollToSection("#hero");
             }}
           >
-            <img 
-              src={faviconSvg} 
-              alt="INPRIME" 
-              className="h-10 w-10"
-            />
-            <span className="text-white font-bold text-xl tracking-wider">INPRIME</span>
+            <img src={faviconSvg} alt="INPRIME" className="h-10 w-10 rounded-full" />
+            <span className="text-white font-bold text-xl tracking-wider">
+              INPRIME
+            </span>
           </motion.a>
 
           {/* Desktop Navigation */}
@@ -79,12 +78,14 @@ export const Navbar = () => {
                 }}
               >
                 {link.label}
-                <span className="
+                <span
+                  className="
                   absolute bottom-0 left-0 w-0 h-0.5
                   bg-inprime-red
                   hover:w-full
                   transition-all duration-300
-                " />
+                "
+                />
               </motion.a>
             ))}
           </div>
@@ -94,7 +95,7 @@ export const Navbar = () => {
             <Button
               variant="primary"
               size="sm"
-              onClick={() => scrollToSection('#pricing')}
+              onClick={() => scrollToSection("#pricing")}
             >
               Приєднатися
             </Button>
@@ -116,7 +117,7 @@ export const Navbar = () => {
           <motion.div
             className="md:hidden bg-inprime-dark/95 backdrop-blur-lg"
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
           >
@@ -142,7 +143,7 @@ export const Navbar = () => {
                 variant="primary"
                 size="md"
                 className="w-full mt-4"
-                onClick={() => scrollToSection('#pricing')}
+                onClick={() => scrollToSection("#pricing")}
               >
                 Приєднатися
               </Button>

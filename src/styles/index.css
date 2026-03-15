@@ -1,5 +1,5 @@
 /* Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
 @import "tailwindcss";
 
@@ -9,9 +9,9 @@ html {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   background-color: #000000;
-  color: #FFFFFF;
+  color: #ffffff;
   line-height: 1.6;
   overflow-x: hidden;
   margin: 0;
@@ -36,23 +36,24 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1A1A1A;
+  background: #1a1a1a;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #E53935;
+  background: #e53935;
 }
 
 /* Selection Color */
 ::selection {
   background-color: rgba(229, 57, 53, 0.3);
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 /* Animations */
 @keyframes pulse-glow {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 20px rgba(229, 57, 53, 0.4);
   }
   50% {
@@ -61,7 +62,8 @@ body {
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -88,7 +90,7 @@ body {
 
 /* Gradient text */
 .text-gradient {
-  background: linear-gradient(135deg, #E53935 0%, #FF5252 100%);
+  background: linear-gradient(135deg, #e53935 0%, #ff5252 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -104,6 +106,6 @@ body {
 /* Custom focus styles */
 button:focus-visible,
 a:focus-visible {
-  outline: 2px solid #E53935;
+  outline: 2px solid #e53935;
   outline-offset: 2px;
 }

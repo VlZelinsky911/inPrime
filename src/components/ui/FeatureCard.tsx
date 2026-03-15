@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 interface FeatureCardProps {
   title: string;
@@ -7,7 +7,12 @@ interface FeatureCardProps {
   index: number;
 }
 
-export const FeatureCard = ({ title, description, image, index }: FeatureCardProps) => {
+export const FeatureCard = ({
+  title,
+  description,
+  image,
+  index,
+}: FeatureCardProps) => {
   return (
     <motion.div
       className="group w-full max-w-sm bg-neutral-900/80 backdrop-blur-sm border border-neutral-800 rounded-2xl overflow-hidden hover:border-red-500/50 transition-all duration-500"
@@ -25,7 +30,8 @@ export const FeatureCard = ({ title, description, image, index }: FeatureCardPro
           alt={title}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
           onError={(e) => {
-            (e.target as HTMLImageElement).src = `https://via.placeholder.com/400x200/1A1A1A/E53935?text=${encodeURIComponent(title)}`;
+            (e.target as HTMLImageElement).src =
+              `https://via.placeholder.com/400x200/1A1A1A/E53935?text=${encodeURIComponent(title)}`;
           }}
         />
         <div className="absolute inset-0 bg-red-500/0 group-hover:bg-red-500/10 transition-colors duration-500 z-5" />
@@ -36,9 +42,7 @@ export const FeatureCard = ({ title, description, image, index }: FeatureCardPro
         <h3 className="text-xl font-bold mb-3 text-white group-hover:text-red-500 transition-colors duration-300">
           {title}
         </h3>
-        <p className="text-gray-400 leading-relaxed">
-          {description}
-        </p>
+        <p className="text-gray-400 leading-relaxed">{description}</p>
       </div>
 
       {/* Bottom Accent Line */}

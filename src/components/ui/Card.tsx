@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import { motion } from 'framer-motion';
+import { ReactNode } from "react";
+import { motion } from "framer-motion";
 
 interface CardProps {
   children: ReactNode;
@@ -7,7 +7,7 @@ interface CardProps {
   hover?: boolean;
 }
 
-export const Card = ({ children, className = '', hover = true }: CardProps) => {
+export const Card = ({ children, className = "", hover = true }: CardProps) => {
   return (
     <motion.div
       className={`
@@ -16,7 +16,7 @@ export const Card = ({ children, className = '', hover = true }: CardProps) => {
         border border-inprime-charcoal
         rounded-2xl
         overflow-hidden
-        ${hover ? 'hover:border-inprime-red/50 hover:shadow-lg hover:shadow-inprime-red/10' : ''}
+        ${hover ? "hover:border-inprime-red/50 hover:shadow-lg hover:shadow-inprime-red/10" : ""}
         transition-all duration-300
         ${className}
       `}

@@ -1,6 +1,11 @@
-import { Navbar, Footer } from './components/layout';
-import { HeroSection, FeaturesSection, PricingSection, ContactSection } from './sections';
-import './styles/index.css';
+import { Navbar, Footer } from "./components/layout";
+import {
+  HeroSection,
+  FeaturesSection,
+  PricingSection,
+  ContactSection,
+} from "./sections";
+import "./styles/index.css";
 
 function App() {
   return (

@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "../components/ui";
-import { SOCIAL_LINKS } from "../constants";
+import { SOCIAL_LINKS, SUPPORT_TELEGRAM_HANDLE } from "../constants";
+import { useI18n } from "../i18n";
 
 // Telegram SVG Icon Component
 const TelegramIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
@@ -11,6 +12,8 @@ const TelegramIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
 );
 
 export const ContactSection = () => {
+  const { t } = useI18n();
+
   return (
     <section id="contact" className="relative py-24 w-full bg-black">
       {/* Background Effects */}
@@ -19,7 +22,7 @@ export const ContactSection = () => {
       </div>
 
       {/* Top border line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neutral-800 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-neutral-800 to-transparent" />
 
       <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -30,8 +33,8 @@ export const ContactSection = () => {
           transition={{ duration: 0.6 }}
         >
           {/* Card background with gradient border effect */}
-          <div className="absolute inset-0 bg-gradient-to-b from-red-500/20 via-transparent to-transparent" />
-          <div className="absolute inset-[1px] bg-neutral-900/95 rounded-3xl" />
+          <div className="absolute inset-0 bg-linear-to-b from-red-500/20 via-transparent to-transparent" />
+          <div className="absolute inset-px bg-neutral-900/95 rounded-3xl" />
 
           {/* Content */}
           <div className="relative p-8 md:p-16 text-center">
@@ -51,20 +54,20 @@ export const ContactSection = () => {
               {/* Glow */}
               <div className="absolute inset-0 bg-red-500/30 rounded-2xl blur-xl" />
 
-              <div className="relative w-20 h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center shadow-2xl shadow-red-500/30">
+              <div className="relative w-20 h-20 bg-linear-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center shadow-2xl shadow-red-500/30">
                 <TelegramIcon className="w-10 h-10 text-white" />
               </div>
             </motion.div>
 
             {/* Title */}
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-              Ready <span className="text-red-500">to join</span> ?
+              {t.contact.titlePrefix}{" "}
+              <span className="text-red-500">{t.contact.titleAccent}</span> ?
             </h2>
 
             {/* Description */}
             <p className="text-lg text-gray-400 mb-10 max-w-lg mx-auto">
-              Write to us on Telegram to subscribe. Our team will help you with
-              all your questions.
+              {t.contact.description}
             </p>
 
             {/* CTA Button + Badge Row */}
@@ -80,7 +83,7 @@ export const ContactSection = () => {
                   className="group px-10"
                 >
                   <TelegramIcon className="w-5 h-5 shrink-0" />
-                  <span>WRITE TO TELEGRAM</span>
+                  <span>{t.contact.cta}</span>
                   <ArrowRight className="w-5 h-5 shrink-0 group-hover:translate-x-1 transition-transform duration-300" />
                 </Button>
               </motion.div>
@@ -95,10 +98,23 @@ export const ContactSection = () => {
               >
                 <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                 <span className="text-sm text-gray-400">
-                  We respond within 5 minutes
+                  {t.contact.responseTime}
                 </span>
               </motion.div>
             </div>
+
+            <motion.p
+              className="mt-6 text-sm text-gray-500"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.35 }}
+            >
+              Telegram:{" "}
+              <span className="text-red-500 font-semibold">
+                {SUPPORT_TELEGRAM_HANDLE}
+              </span>
+            </motion.p>
           </div>
         </motion.div>
       </div>

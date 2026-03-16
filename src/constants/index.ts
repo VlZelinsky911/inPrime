@@ -8,9 +8,11 @@ export const SITE_CONFIG = {
 };
 
 export const SOCIAL_LINKS = {
-  telegram: "https://t.me/inprime_support", // Замінити на реальне посилання
+  telegram: "https://t.me/suport_OS", // Замінити на реальне посилання
   discord: "https://discord.gg/inprime", // Замінити на реальне посилання
 };
+
+export const SUPPORT_TELEGRAM_HANDLE = "@suport_OS";
 
 export const NAV_LINKS = [
   { label: "Home", href: "#hero" },
@@ -22,22 +24,31 @@ export const NAV_LINKS = [
 export const FEATURES = [
   {
     id: 1,
-    title: "Analytics",
+    title: "Підтримка",
     description:
-      "Exclusive analytics from our experts. Daily forecasts and analysis.",
+      "Support, підтримка від менторів. Ми вирішили зробити корисну гілку для вас для вирішення всіх ваших запитань.",
     image: "/images/feature-1.png",
   },
   {
     id: 2,
-    title: "Signals",
-    description: "Accurate trading signals. Be the first to be notified.",
+    title: "Inprime-camping",
+    description:
+      "Мінікурс від нашої команди. Ми підготували детальні методички по всіх торгових інструментах, які використовуємо у власній торгівлі.",
     image: "/images/feature-2.png",
   },
   {
     id: 3,
-    title: "Community",
-    description: "Chat with professionals and like-minded traders 24/7.",
+    title: "Записи кожного нашого стріму",
+    description:
+      "Якщо ти вперше доєднався до нас, у тебе є можливість переглянути записи всіх наших стрімів. Там ти зможеш побачити наш процес торгівлі та розбір ринку.",
     image: "/images/feature-3.png",
+  },
+  {
+    id: 4,
+    title: "Ранкові UPD від нашої команди",
+    description:
+      "Отримуй ранкові UPD по активах GER40, XAU, EUR, GBP. Ми ділимося актуальним баченням ринку та розбором кожної угоди.",
+    image: "/images/feature-4.png",
   },
 ];
 
@@ -45,7 +56,7 @@ export const PRICING_PLANS = [
   {
     id: "monthly",
     name: "1 Month",
-    price: 49,
+    price: 35,
     currency: "$",
     period: "/month",
     features: [
@@ -59,7 +70,7 @@ export const PRICING_PLANS = [
   {
     id: "quarterly",
     name: "3 Months",
-    price: 99,
+    price: 90,
     currency: "$",
     period: "/3 months",
     features: [

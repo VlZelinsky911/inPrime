@@ -2,8 +2,11 @@ import { motion } from "framer-motion";
 import { Check, Zap } from "lucide-react";
 import { Button } from "../components/ui";
 import { PRICING_PLANS, SOCIAL_LINKS } from "../constants";
+import { useI18n } from "../i18n";
 
 export const PricingSection = () => {
+  const { t } = useI18n();
+
   return (
     <section id="pricing" className="relative py-24 w-full bg-black">
       {/* Background Effects */}
@@ -21,15 +24,15 @@ export const PricingSection = () => {
           transition={{ duration: 0.6 }}
         >
           <span className="inline-block px-4 py-1.5 bg-red-500/10 border border-red-500/20 rounded-full text-red-500 font-medium text-sm mb-6">
-            Pricing
+            {t.pricing.badge}
           </span>
 
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Choose your <span className="text-red-500">plan</span>
+            {t.pricing.title} <span className="text-red-500">{t.pricing.titleAccent}</span>
           </h2>
 
           <p className="text-lg text-gray-400 max-w-xl mx-auto">
-            Simple and transparent pricing with no hidden fees
+            {t.pricing.description}
           </p>
         </motion.div>
 
@@ -40,7 +43,7 @@ export const PricingSection = () => {
               key={plan.id}
               className={`relative rounded-2xl overflow-hidden ${
                 plan.popular
-                  ? "bg-gradient-to-b from-red-500/20 to-neutral-900/80 border-2 border-red-500/50"
+                  ? "bg-linear-to-b from-red-500/20 to-neutral-900/80 border-2 border-red-500/50"
                   : "bg-neutral-900/60 border border-neutral-800"
               }`}
               initial={{ opacity: 0, y: 30 }}
@@ -53,7 +56,7 @@ export const PricingSection = () => {
               {plan.popular && (
                 <div className="absolute top-0 left-0 right-0 bg-red-500 text-white text-center py-2 text-sm font-semibold flex items-center justify-center gap-2">
                   <Zap className="w-4 h-4" />
-                  MOST POPULAR
+                  {t.pricing.mostPopular}
                 </div>
               )}
 
@@ -82,7 +85,7 @@ export const PricingSection = () => {
                   {plan.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start gap-3">
                       <div
-                        className={`flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center ${
+                        className={`shrink-0 w-5 h-5 rounded-full flex items-center justify-center ${
                           plan.popular ? "bg-red-500" : "bg-neutral-700"
                         }`}
                       >
@@ -100,7 +103,7 @@ export const PricingSection = () => {
                   href={SOCIAL_LINKS.telegram}
                   className="w-full"
                 >
-                  Choose plan
+                  {t.pricing.choosePlan}
                 </Button>
               </div>
             </motion.div>
@@ -116,9 +119,9 @@ export const PricingSection = () => {
           transition={{ delay: 0.4 }}
         >
           {[
-            { icon: "🔒", text: "Secure payment" },
-            { icon: "💬", text: "Support 24/7" },
-            { icon: "⚡", text: "Instant access" },
+            { icon: "🔒", text: t.pricing.guarantee.secure },
+            { icon: "💬", text: t.pricing.guarantee.support },
+            { icon: "⚡", text: t.pricing.guarantee.access },
           ].map((item, idx) => (
             <div key={idx} className="flex items-center gap-2 text-gray-500">
               <span>{item.icon}</span>

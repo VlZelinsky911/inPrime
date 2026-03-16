@@ -3,6 +3,7 @@ import {
   HeroSection,
   FeaturesSection,
   PricingSection,
+  FeedbackSection,
   ContactSection,
 } from "./sections";
 import "./styles/index.css";
@@ -15,6 +16,7 @@ function App() {
         <HeroSection />
         <FeaturesSection />
         <PricingSection />
+        <FeedbackSection />
         <ContactSection />
       </main>
       <Footer />

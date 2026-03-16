@@ -1,5 +1,17 @@
 import { motion } from "framer-motion";
 import { FEATURES } from "../constants";
+import SupportImage from "../assets/1support.jpg";
+import InprimeCampingImage from "../assets/2. Inprime-camping.jpg";
+import RecordingsImage from "../assets/3. Recordings of each of our streams.jpg";
+import MorningUpdatesImage from "../assets/4. Morning updates from our team.jpg";
+import { useI18n } from "../i18n";
+
+const FEATURE_SCREENSHOTS = [
+  { image: SupportImage, alt: "Підтримка" },
+  { image: InprimeCampingImage, alt: "Inprime-camping" },
+  { image: RecordingsImage, alt: "Записи кожного нашого стріму" },
+  { image: MorningUpdatesImage, alt: "Ранкові UPD від нашої команди" },
+];
 
 // Feature item with zigzag layout
 const FeatureItem = ({
@@ -27,30 +39,21 @@ const FeatureItem = ({
           transition={{ duration: 0.3 }}
         >
           {/* Glow effect */}
-          <div className="absolute -inset-1 bg-gradient-to-r from-red-500/20 to-red-500/0 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute -inset-1 bg-linear-to-r from-red-500/20 to-red-500/0 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
           {/* Card */}
           <div className="relative bg-neutral-900/80 border border-neutral-800 rounded-2xl overflow-hidden">
             {/* Red accent line */}
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 to-red-600" />
+            <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-red-500 to-red-600" />
 
-            {/* Discord icon placeholder */}
-            <div className="p-8 flex flex-col items-center justify-center min-h-[200px]">
-              <div className="w-16 h-16 bg-red-500/10 border border-red-500/30 rounded-xl flex items-center justify-center mb-4">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="w-8 h-8 text-red-500"
-                >
-                  <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.36-.698.772-1.362 1.225-1.993a.076.076 0 0 0-.041-.107 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.12-.098.246-.198.373-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225.1993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z" />
-                </svg>
-              </div>
-              <p className="text-gray-500 text-sm">
-                Screenshot: {feature.title}
-              </p>
-              <p className="text-gray-600 text-xs mt-1">
-                Upload screenshots to public/images/
-              </p>
+            {/* Screenshot */}
+            <div className="w-full h-full min-h-[220px]">
+              <img
+                src={FEATURE_SCREENSHOTS[index]?.image}
+                alt={FEATURE_SCREENSHOTS[index]?.alt ?? feature.title}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
             </div>
           </div>
         </motion.div>
@@ -64,7 +67,7 @@ const FeatureItem = ({
           className={`flex items-start gap-4 ${isReversed ? "lg:flex-row-reverse" : ""}`}
         >
           {/* Number Badge */}
-          <div className="flex-shrink-0">
+          <div className="shrink-0">
             <span className="inline-flex items-center justify-center w-8 h-8 bg-red-500/10 border border-red-500/30 rounded-lg text-red-500 font-bold text-sm">
               {index + 1}
             </span>
@@ -85,6 +88,8 @@ const FeatureItem = ({
 };
 
 export const FeaturesSection = () => {
+  const { t } = useI18n();
+
   return (
     <section id="features" className="relative py-24 w-full bg-black">
       {/* Background Decoration */}
@@ -103,11 +108,12 @@ export const FeaturesSection = () => {
           transition={{ duration: 0.6 }}
         >
           <span className="inline-block px-4 py-1.5 bg-red-500/10 border border-red-500/20 rounded-full text-red-500 font-medium text-sm mb-6">
-            What's inside
+            {t.features.badge}
           </span>
 
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Look at our <span className="text-red-500">Discord</span>
+            {t.features.titlePrefix}{" "}
+            <span className="text-red-500">{t.features.titleAccent}</span>
           </h2>
         </motion.div>
 

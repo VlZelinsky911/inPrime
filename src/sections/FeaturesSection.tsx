@@ -88,6 +88,8 @@ const FeatureItem = ({
 
 export const FeaturesSection = () => {
   const { t } = useI18n();
+  const { badge, titlePrefix, titleAccent, items, benefits } = t.features;
+  const showHeader = badge || titlePrefix || titleAccent;
 
   return (
     <section id="features" className="relative py-24 w-full bg-black">
@@ -99,9 +101,7 @@ export const FeaturesSection = () => {
 
       <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        {(t.features.badge ||
-          t.features.titlePrefix ||
-          t.features.titleAccent) && (
+        {showHeader && (
           <motion.div
             className="text-center mb-20"
             initial={{ opacity: 0, y: 30 }}
@@ -109,16 +109,16 @@ export const FeaturesSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            {t.features.badge && (
+            {badge && (
               <span className="inline-block px-4 py-1.5 bg-red-500/10 border border-red-500/20 rounded-full text-red-500 font-medium text-sm mb-6">
-                {t.features.badge}
+                {badge}
               </span>
             )}
 
-            {(t.features.titlePrefix || t.features.titleAccent) && (
+            {(titlePrefix || titleAccent) && (
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                {t.features.titlePrefix}{" "}
-                <span className="text-red-500">{t.features.titleAccent}</span>
+                {titlePrefix}{" "}
+                <span className="text-red-500">{titleAccent}</span>
               </h2>
             )}
           </motion.div>
@@ -126,7 +126,7 @@ export const FeaturesSection = () => {
 
         {/* Features Zigzag List */}
         <div className="space-y-20 lg:space-y-32">
-          {t.features.items.map((feature, index) => (
+          {items.map((feature, index) => (
             <FeatureItem
               key={index}
               feature={feature}
@@ -146,21 +146,21 @@ export const FeaturesSection = () => {
         >
           <div className="text-center mb-12">
             <span className="inline-block px-4 py-1.5 bg-red-500/10 border border-red-500/20 rounded-full text-red-500 font-medium text-sm mb-6">
-              {t.features.benefits.badge}
+              {benefits.badge}
             </span>
 
             <h2 className="text-3xl md:text-4xl font-bold text-white">
-              {t.features.benefits.title}{" "}
+              {benefits.title}{" "}
               <span className="text-red-500">
-                {t.features.benefits.titleAccent}
+                {benefits.titleAccent}
               </span>
             </h2>
-            <p className="text-gray-500 mt-4">{t.features.benefits.subtitle}</p>
+            <p className="text-gray-500 mt-4">{benefits.subtitle}</p>
           </div>
 
           {/* Benefits Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {t.features.benefits.items.map((item, index) => (
+            {benefits.items.map((item, index) => (
               <motion.div
                 key={index}
                 className="bg-neutral-900/50 border border-neutral-800 rounded-xl p-6 text-center hover:border-red-500/30 transition-colors duration-300"

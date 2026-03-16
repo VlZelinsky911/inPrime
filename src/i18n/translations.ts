@@ -16,7 +16,7 @@ export const translations = {
       line1: "Join the community of professional traders.",
       strong: "Get up-to-date signals",
       line2: "and support 24/7.",
-      joinDiscord: "JOIN DISCORD",
+      joinCta: "JOIN US",
       learnMore: "LEARN MORE",
     },
     features: {
@@ -77,7 +77,7 @@ export const translations = {
       line1: "Приєднуйся до спільноти професійних трейдерів.",
       strong: "Актуальні сигнали",
       line2: " та підтримка 24/7.",
-      joinDiscord: "JOIN DISCORD",
+      joinCta: "ПРИЄДНАТИСЬ",
       learnMore: "ДІЗНАТИСЬ БІЛЬШЕ",
     },
     features: {
@@ -124,4 +124,3 @@ export const translations = {
     },
   },
 } as const;
-

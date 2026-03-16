@@ -126,7 +126,7 @@ export const Navbar = () => {
             <Button
               variant="primary"
               size="sm"
-              onClick={() => scrollToSection("#pricing")}
+              onClick={() => scrollToSection("#contact")}
             >
               {t.nav.join}
             </Button>
@@ -207,7 +207,7 @@ export const Navbar = () => {
                 variant="primary"
                 size="md"
                 className="w-full mt-4"
-                onClick={() => scrollToSection("#pricing")}
+                onClick={() => scrollToSection("#contact")}
               >
                 {t.nav.join}
               </Button>

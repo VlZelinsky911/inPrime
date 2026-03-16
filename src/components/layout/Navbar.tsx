@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { NAV_LINKS } from "../../constants";
 import { Button } from "../ui";
 import faviconSvg from "../../assets/favicon.svg";
+import { useI18n } from "../../i18n";
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { language, setLanguage, t } = useI18n();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,7 +62,13 @@ export const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            {NAV_LINKS.map((link) => (
+            {[
+              { label: t.nav.home, href: "#hero" },
+              { label: t.nav.about, href: "#features" },
+              { label: t.nav.prices, href: "#pricing" },
+              { label: t.nav.feedback, href: "#feedback" },
+              { label: t.nav.contacts, href: "#contact" },
+            ].map((link) => (
               <motion.a
                 key={link.href}
                 href={link.href}
@@ -90,14 +97,38 @@ export const Navbar = () => {
             ))}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
+          {/* CTA + Language */}
+          <div className="hidden md:flex items-center gap-3">
+            <div className="inline-flex items-center rounded-full border border-inprime-charcoal bg-inprime-dark/60 p-1">
+              <button
+                type="button"
+                onClick={() => setLanguage("en")}
+                className={`px-3 py-1.5 text-xs font-semibold rounded-full transition-colors ${
+                  language === "en"
+                    ? "bg-inprime-red text-white"
+                    : "text-inprime-light-gray hover:text-inprime-white"
+                }`}
+              >
+                {t.language.en}
+              </button>
+              <button
+                type="button"
+                onClick={() => setLanguage("uk")}
+                className={`px-3 py-1.5 text-xs font-semibold rounded-full transition-colors ${
+                  language === "uk"
+                    ? "bg-inprime-red text-white"
+                    : "text-inprime-light-gray hover:text-inprime-white"
+                }`}
+              >
+                {t.language.uk}
+              </button>
+            </div>
             <Button
               variant="primary"
               size="sm"
               onClick={() => scrollToSection("#pricing")}
             >
-              Приєднатися
+              {t.nav.join}
             </Button>
           </div>
 
@@ -122,7 +153,13 @@ export const Navbar = () => {
             transition={{ duration: 0.3 }}
           >
             <div className="px-4 py-6 space-y-4">
-              {NAV_LINKS.map((link) => (
+              {[
+                { label: t.nav.home, href: "#hero" },
+                { label: t.nav.about, href: "#features" },
+                { label: t.nav.prices, href: "#pricing" },
+                { label: t.nav.feedback, href: "#feedback" },
+                { label: t.nav.contacts, href: "#contact" },
+              ].map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
@@ -139,13 +176,40 @@ export const Navbar = () => {
                   {link.label}
                 </a>
               ))}
+
+              <div className="pt-2">
+                <div className="inline-flex w-full items-center justify-center rounded-full border border-inprime-charcoal bg-inprime-dark/60 p-1">
+                  <button
+                    type="button"
+                    onClick={() => setLanguage("en")}
+                    className={`flex-1 px-3 py-2 text-xs font-semibold rounded-full transition-colors ${
+                      language === "en"
+                        ? "bg-inprime-red text-white"
+                        : "text-inprime-light-gray hover:text-inprime-white"
+                    }`}
+                  >
+                    {t.language.en}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setLanguage("uk")}
+                    className={`flex-1 px-3 py-2 text-xs font-semibold rounded-full transition-colors ${
+                      language === "uk"
+                        ? "bg-inprime-red text-white"
+                        : "text-inprime-light-gray hover:text-inprime-white"
+                    }`}
+                  >
+                    {t.language.uk}
+                  </button>
+                </div>
+              </div>
               <Button
                 variant="primary"
                 size="md"
                 className="w-full mt-4"
                 onClick={() => scrollToSection("#pricing")}
               >
-                Приєднатися
+                {t.nav.join}
               </Button>
             </div>
           </motion.div>

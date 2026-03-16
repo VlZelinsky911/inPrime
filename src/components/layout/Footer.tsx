@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { SITE_CONFIG, SOCIAL_LINKS } from "../../constants";
 import faviconSvg from "../../assets/favicon.svg";
+import { useI18n } from "../../i18n";
 
 // Discord Icon Component
 const DiscordIcon = () => (
@@ -18,6 +19,7 @@ const TelegramIcon = () => (
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { t } = useI18n();
 
   return (
     <footer className="bg-black border-t border-neutral-800/50">
@@ -34,7 +36,7 @@ export const Footer = () => {
               <span className="text-white font-bold text-lg tracking-wider">
                 INPRIME
               </span>
-              <span className="text-gray-500 text-xs">Trading Community</span>
+              <span className="text-gray-500 text-xs">{t.footer.tagline}</span>
             </div>
           </motion.a>
 
@@ -65,7 +67,7 @@ export const Footer = () => {
 
           {/* Copyright */}
           <p className="text-gray-500 text-sm">
-            © {currentYear} {SITE_CONFIG.name}. All rights reserved.
+            © {currentYear} {SITE_CONFIG.name}. {t.footer.rights}
           </p>
         </div>
       </div>

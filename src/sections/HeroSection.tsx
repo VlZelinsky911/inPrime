@@ -111,10 +111,14 @@ export const HeroSection = () => {
             <p className="text-lg md:text-xl text-gray-400 mb-2">
               {t.hero.line1}
             </p>
-            <p className="text-lg md:text-xl">
-              <span className="text-white font-semibold">{t.hero.strong}</span>
-              <span className="text-gray-400"> {t.hero.line2}</span>
-            </p>
+            {(t.hero.strong || t.hero.line2) && (
+              <p className="text-lg md:text-xl">
+                <span className="text-white font-semibold">
+                  {t.hero.strong}
+                </span>
+                <span className="text-gray-400">{t.hero.line2}</span>
+              </p>
+            )}
           </motion.div>
 
           {/* CTA Buttons */}
@@ -127,7 +131,7 @@ export const HeroSection = () => {
             <Button
               variant="primary"
               size="lg"
-              href="#contact"
+              href="#pricing"
               className="min-w-[220px] group"
             >
               <svg

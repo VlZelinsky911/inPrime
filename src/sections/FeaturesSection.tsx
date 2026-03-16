@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { FEATURES } from "../constants";
 import SupportImage from "../assets/1support.jpg";
 import InprimeCampingImage from "../assets/2. Inprime-camping.jpg";
 import RecordingsImage from "../assets/3. Recordings of each of our streams.jpg";
@@ -7,10 +6,10 @@ import MorningUpdatesImage from "../assets/4. Morning updates from our team.jpg"
 import { useI18n } from "../i18n";
 
 const FEATURE_SCREENSHOTS = [
-  { image: SupportImage, alt: "Підтримка" },
+  { image: SupportImage, alt: "Support" },
   { image: InprimeCampingImage, alt: "Inprime-camping" },
-  { image: RecordingsImage, alt: "Записи кожного нашого стріму" },
-  { image: MorningUpdatesImage, alt: "Ранкові UPD від нашої команди" },
+  { image: RecordingsImage, alt: "Stream recordings" },
+  { image: MorningUpdatesImage, alt: "Morning updates" },
 ];
 
 // Feature item with zigzag layout
@@ -19,7 +18,7 @@ const FeatureItem = ({
   index,
   isReversed,
 }: {
-  feature: (typeof FEATURES)[0];
+  feature: { title: string; description: string };
   index: number;
   isReversed: boolean;
 }) => {
@@ -100,28 +99,36 @@ export const FeaturesSection = () => {
 
       <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <motion.div
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="inline-block px-4 py-1.5 bg-red-500/10 border border-red-500/20 rounded-full text-red-500 font-medium text-sm mb-6">
-            {t.features.badge}
-          </span>
+        {(t.features.badge ||
+          t.features.titlePrefix ||
+          t.features.titleAccent) && (
+          <motion.div
+            className="text-center mb-20"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            {t.features.badge && (
+              <span className="inline-block px-4 py-1.5 bg-red-500/10 border border-red-500/20 rounded-full text-red-500 font-medium text-sm mb-6">
+                {t.features.badge}
+              </span>
+            )}
 
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            {t.features.titlePrefix}{" "}
-            <span className="text-red-500">{t.features.titleAccent}</span>
-          </h2>
-        </motion.div>
+            {(t.features.titlePrefix || t.features.titleAccent) && (
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                {t.features.titlePrefix}{" "}
+                <span className="text-red-500">{t.features.titleAccent}</span>
+              </h2>
+            )}
+          </motion.div>
+        )}
 
         {/* Features Zigzag List */}
         <div className="space-y-20 lg:space-y-32">
-          {FEATURES.map((feature, index) => (
+          {t.features.items.map((feature, index) => (
             <FeatureItem
-              key={feature.id}
+              key={index}
               feature={feature}
               index={index}
               isReversed={index % 2 === 1}
@@ -139,37 +146,21 @@ export const FeaturesSection = () => {
         >
           <div className="text-center mb-12">
             <span className="inline-block px-4 py-1.5 bg-red-500/10 border border-red-500/20 rounded-full text-red-500 font-medium text-sm mb-6">
-              Your benefits
+              {t.features.benefits.badge}
             </span>
 
             <h2 className="text-3xl md:text-4xl font-bold text-white">
-              What you get in <span className="text-red-500">InPrime</span>
+              {t.features.benefits.title}{" "}
+              <span className="text-red-500">
+                {t.features.benefits.titleAccent}
+              </span>
             </h2>
-            <p className="text-gray-500 mt-4">
-              Everything you need for successful trading
-            </p>
+            <p className="text-gray-500 mt-4">{t.features.benefits.subtitle}</p>
           </div>
 
           {/* Benefits Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              {
-                icon: "📈",
-                title: "Trading Signals",
-                desc: "Up-to-date signals with detailed analysis",
-              },
-              {
-                icon: "📚",
-                title: "Education",
-                desc: "Video tutorials and strategy breakdowns",
-              },
-              {
-                icon: "👥",
-                title: "Community",
-                desc: "Chat with professionals 24/7",
-              },
-              { icon: "📊", title: "Analytics", desc: "Daily market overview" },
-            ].map((item, index) => (
+            {t.features.benefits.items.map((item, index) => (
               <motion.div
                 key={index}
                 className="bg-neutral-900/50 border border-neutral-800 rounded-xl p-6 text-center hover:border-red-500/30 transition-colors duration-300"

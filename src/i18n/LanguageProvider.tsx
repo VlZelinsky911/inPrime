@@ -12,10 +12,10 @@ const I18nContext = createContext<I18nContextValue | null>(null);
 const STORAGE_KEY = "inprime.language";
 
 function getInitialLanguage(): Language {
-  if (typeof window === "undefined") return "en";
+  if (typeof window === "undefined") return "uk";
   const stored = window.localStorage.getItem(STORAGE_KEY);
   if (stored === "uk" || stored === "en") return stored;
-  return "en";
+  return "uk";
 }
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {

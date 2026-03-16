@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import { Check, Zap } from "lucide-react";
+import { Zap } from "lucide-react";
 import { Button } from "../components/ui";
-import { PRICING_PLANS, SOCIAL_LINKS } from "../constants";
+import { PRICING_PLANS } from "../constants";
 import { useI18n } from "../i18n";
 
 export const PricingSection = () => {
@@ -28,8 +28,15 @@ export const PricingSection = () => {
           </span>
 
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            {t.pricing.title} <span className="text-red-500">{t.pricing.titleAccent}</span>
+            {t.pricing.title}{" "}
+            <span className="text-red-500">{t.pricing.titleAccent}</span>
           </h2>
+
+          {t.pricing.intro && (
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-4">
+              {t.pricing.intro}
+            </p>
+          )}
 
           <p className="text-lg text-gray-400 max-w-xl mx-auto">
             {t.pricing.description}
@@ -38,76 +45,60 @@ export const PricingSection = () => {
 
         {/* Pricing Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-          {PRICING_PLANS.map((plan, index) => (
-            <motion.div
-              key={plan.id}
-              className={`relative rounded-2xl overflow-hidden ${
-                plan.popular
-                  ? "bg-linear-to-b from-red-500/20 to-neutral-900/80 border-2 border-red-500/50"
-                  : "bg-neutral-900/60 border border-neutral-800"
-              }`}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5, transition: { duration: 0.2 } }}
-            >
-              {/* Popular Badge */}
-              {plan.popular && (
-                <div className="absolute top-0 left-0 right-0 bg-red-500 text-white text-center py-2 text-sm font-semibold flex items-center justify-center gap-2">
-                  <Zap className="w-4 h-4" />
-                  {t.pricing.mostPopular}
+          {PRICING_PLANS.map((plan, index) => {
+            const translatedPlan = t.pricing.plans[index];
+            return (
+              <motion.div
+                key={plan.id}
+                className={`relative rounded-2xl overflow-hidden ${
+                  plan.popular
+                    ? "bg-linear-to-b from-red-500/20 to-neutral-900/80 border-2 border-red-500/50"
+                    : "bg-neutral-900/60 border border-neutral-800"
+                }`}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              >
+                {/* Popular Badge */}
+                {plan.popular && (
+                  <div className="absolute top-0 left-0 right-0 bg-red-500 text-white text-center py-2 text-sm font-semibold flex items-center justify-center gap-2">
+                    <Zap className="w-4 h-4" />
+                    {t.pricing.mostPopular}
+                  </div>
+                )}
+
+                <div className={`p-8 ${plan.popular ? "pt-14" : ""}`}>
+                  {/* Plan Name */}
+                  <h3 className="text-xl font-bold text-white mb-2">
+                    {translatedPlan.name}
+                  </h3>
+
+                  {/* Price */}
+                  <div className="flex items-baseline gap-1 mb-8">
+                    <span className="text-4xl font-black text-white">
+                      {plan.price}
+                    </span>
+                    <span className="text-gray-400">{plan.currency}</span>
+                    <span className="text-gray-500 text-sm">
+                      {translatedPlan.period}
+                    </span>
+                  </div>
+
+                  {/* CTA Button */}
+                  <Button
+                    variant={plan.popular ? "primary" : "outline"}
+                    size="lg"
+                    href="#contact"
+                    className="w-full"
+                  >
+                    {t.pricing.choosePlan}
+                  </Button>
                 </div>
-              )}
-
-              <div className={`p-8 ${plan.popular ? "pt-14" : ""}`}>
-                {/* Plan Name */}
-                <h3 className="text-xl font-bold text-white mb-2">
-                  {plan.name}
-                </h3>
-
-                {/* Price */}
-                <div className="flex items-baseline gap-1 mb-6">
-                  <span className="text-4xl font-black text-white">
-                    {plan.price}
-                  </span>
-                  <span className="text-gray-400">{plan.currency}</span>
-                  <span className="text-gray-500 text-sm">{plan.period}</span>
-                </div>
-
-                {/* Divider */}
-                <div
-                  className={`h-px mb-6 ${plan.popular ? "bg-red-500/30" : "bg-neutral-800"}`}
-                />
-
-                {/* Features */}
-                <ul className="space-y-4 mb-8">
-                  {plan.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <div
-                        className={`shrink-0 w-5 h-5 rounded-full flex items-center justify-center ${
-                          plan.popular ? "bg-red-500" : "bg-neutral-700"
-                        }`}
-                      >
-                        <Check className="w-3 h-3 text-white" />
-                      </div>
-                      <span className="text-gray-300 text-sm">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* CTA Button */}
-                <Button
-                  variant={plan.popular ? "primary" : "outline"}
-                  size="lg"
-                  href={SOCIAL_LINKS.telegram}
-                  className="w-full"
-                >
-                  {t.pricing.choosePlan}
-                </Button>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Guarantee */}

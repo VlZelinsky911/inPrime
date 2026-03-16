@@ -54,7 +54,11 @@ export const Navbar = () => {
               scrollToSection("#hero");
             }}
           >
-            <img src={faviconSvg} alt="INPRIME" className="h-10 w-10 rounded-full" />
+            <img
+              src={faviconSvg}
+              alt="INPRIME"
+              className="h-10 w-10 rounded-full"
+            />
             <span className="text-white font-bold text-xl tracking-wider">
               INPRIME
             </span>
@@ -126,7 +130,7 @@ export const Navbar = () => {
             <Button
               variant="primary"
               size="sm"
-              onClick={() => scrollToSection("#contact")}
+              onClick={() => scrollToSection("#pricing")}
             >
               {t.nav.join}
             </Button>
@@ -207,7 +211,7 @@ export const Navbar = () => {
                 variant="primary"
                 size="md"
                 className="w-full mt-4"
-                onClick={() => scrollToSection("#contact")}
+                onClick={() => scrollToSection("#pricing")}
               >
                 {t.nav.join}
               </Button>

@@ -39,14 +39,27 @@ export const Button = ({
   const combinedStyles = `${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`;
 
   if (href) {
+    const isAnchor = href.startsWith("#");
+    
+    const handleAnchorClick = (e: React.MouseEvent) => {
+      if (isAnchor) {
+        e.preventDefault();
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    };
+
     return (
       <motion.a
         href={href}
-        target="_blank"
-        rel="noopener noreferrer"
+        target={isAnchor ? undefined : "_blank"}
+        rel={isAnchor ? undefined : "noopener noreferrer"}
         className={combinedStyles}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
+        onClick={handleAnchorClick}
       >
         {icon && <span>{icon}</span>}
         {children}
